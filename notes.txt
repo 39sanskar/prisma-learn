@@ -1,0 +1,61 @@
+- express.json() allows your Express server to read JSON data sent by clients through req.body.
+
+- app.use(express.json()) is a built-in middleware in Express.js that parses incoming JSON request bodies and makes the data available in req.body.
+
+- (npm install prisma @prisma/client)  or (npm install prisma@latest @prisma/client@latest) => installs Prisma CLI and the Prisma Client library, which together allow your Node.js app to define database schema and interact with the database using JavaScript/TypeScript instead of raw SQL.
+
+- npx prisma init => initializes Prisma in your project by creating the Prisma configuration files (like the prisma folder with schema.prisma and a .env file) needed to set up and connect to a database.
+
+
+- npx prisma -v => shows the prisma version
+
+/**
+ * docker run --name my-postgres4 \
+ * -e POSTGRES_PASSWORD=<yourpassword> \
+ * -d -p 5433:5432 postgres
+ */
+
+// postgresql://postgres:mysecretpassword@localhost:5433/postgres
+
+- npx prisma migrate dev --name init in Prisma ORM creates and applies a database migration based on your schema.prisma changes and generates the Prisma Client.
+
+- It creates a migration, updates the database schema, and regenerates the Prisma Client.
+- (Important) Sync your Prisma schema with the database by creating and running migrations.
+
+- npx prisma generate:  in Prisma ORM generates the Prisma Client based on your schema.prisma so your application can query the database using JavaScript/TypeScript.
+
+- "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+
+// npx prisma db seed: in Prisma ORM runs the configured seed script to populate your database with initial or sample data.
+
+- in Prisma ORM runs the configured seed script to populate your database with initial or sample data.
+
+- npx prisma db seed → fills your database with predefined data automatically.
+
+- await prisma.user.deleteMany();  => It removes all existing users from the database before inserting new seed data.
+
+- skipDuplicates: true  => Prevent seed script from crashing
+- findFirst()
+- findFirstOrThrow()
+- const users = await prisma.user.findUnique({
+    where: { id: 6 },
+  });
+
+- const users = await prisma.user.findUnique({
+    where: { email: "xyz@example.com" },
+  });  
+
+- findMany()
+- const users = await prisma.user.findMany({
+    where: { isMarried: false, age: {lt} },
+  });
+
+// lt => less than, lte => less than or equal, gt => greater then, gte => greater than or equal to 
+
+-- curl -X PUT http://localhost:4000/users Or using postman
+-- curl -X DELETE http://localhost:4000/users
+{"count":1}%   it means how many user are deleted.
+
+-- 
